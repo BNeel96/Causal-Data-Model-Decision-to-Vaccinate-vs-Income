@@ -27,13 +27,21 @@ recognition (\is this a cat or dog?). But nothing in the theoretical basis of ML
 - State whether your  model can or cannot be used for any additional purposes
   - This Model is restricted to Educational purpose, aimed at understanding 'how to implement Causal Modleing in an Hypothetical Business Case'.
 
+**About Business Case**
+
+You are an Analyst for a Major COVID-19 Vaccine Manufacturer of India. Having encountered a business decision problem where company observed lower vaccination outcomes (hence lower Return on Investment) even after the release of Indigenous Vaccine. You suspect the high cost placed on the vaccine by the Company Management and Central Government is responsible for this outcome, whereas the Managment is divided on this result; one half interpreting it as  lack of awareness and fear among masses to vaccinate while the other half hpothesizes that is due to the large proportion of divided Income groups. You take lead to prove that there is a Causal Relationship between the variables and decide to prove it by building a Causal Model. 
+
+By talking to invested stakeholders accross the company you come up with 12 variables. And build a Causal Model with them.
+
+The Company Management and Central Government have put the prices of Vaccines at nearly Rs.1000(for simplified calculation purpose) for Private Hospitals, while the Government Hospital are giving out the same vaccine for free. The number of Government hospitals are not sufficient to contain the requirement. You hypothesize that lowering the cost of can lead to wider vaccination. So, you with a group of Data Analyst perform Causal Inference on all the parameters to find out the influence of Treatment Variable: Income on the Outcome Variable: Vaccination or Decision to Vaccinate.
+
 **Data Gathered**
 - Source of training data: The Data was created with formulas on researching Scientic Journals and materials Online.
 - Define the meaning of all data columns.
-- 
+ 
 |Name|Modeling Role|	Measurement Level| Description|
 |----|-------------|-------------------|------------|
-**Education** | input| int| The level of Education that the Individual completed before taking the Job. Here, it is assumed that graduation leads to higher Income |
+**Education** | input| int| The level of Education that the Individual completed before taking the Job. Here, it is assumed that graduation leads to higher Income.|
 **Family Wealth**| input| int| Family Wealth is an unobserved variable which can affect Income and Education both. As Families with higher wealth tend to provide good education to their children as well as can lead to higher Individual Income owing to the Industry Influence.|
 **Income**| input| int| The Earning Capacity of an individual. It depends on two variables that is Education received and the Family Wealth possessed by them. It is considered that Higher the Education received, higher would be the Income of the Individual. Also, if the Family Income has a direct impact on the Income.|
 **Afford**| input| int| Affordability is an individual’s capacity to buy a Vaccine for themselves. It is influenced by persons Income and FamilyWealth.| 
@@ -61,3 +69,7 @@ recognition (\is this a cat or dog?). But nothing in the theoretical basis of ML
 **Govt Mandate**| IF(E2>45,1,0)| Government Mandate/priority to vaccinate, is for people above the Age of 45 years.|
 **Health**|Round(RAND()*10,0)| Out of 10, how would the employee rate their health given any conditions.|
 **Vaccination**|STANDARDIZE(D2,AVERAGE($D$2:$D$1000),STDEV($D$2:$D$1000)) + IF(E2>28.4,1,0)+IF(F2=1,1,0)+IF(G2=1,1,0)+IF(H2=1,1,0)+IF(I2=1,1,0)+IF(J2=1,1,0) + STANDARDIZE(L2,AVERAGE($L$2:$L$1000),STDEV($L$2:$L$1000))| The Decision to vaccinate is based on variables Afford, Age, Vehicle, Fear, Kids, EssentialWorker, GovtMandate and Health. Except Afford and Health all the variables return binary values depending on the condition. If the person earns above National Average, then they will consider vaccinating. Similarly, if the Age is above National Average of 28.4, they will consider vaccinating. If they possess a Vehicle or have Kids, possess Fear, are Essential Workers, have been Prioritized by the Government or have Health Conditions they will consider vaccinating. Since Afford and Health are categorical, they are standardized. If the Health is bad or Affordability score is low, then a negative score is obtained, which leads to lowering the vaccination score. The Vaccination Score for a person who is highly likely to Vaccinate is higher and positive while a person who is unlikely to get vaccinated is lower and negative.|
+
+**Model details**
+- State the Treatment and Outcome variable in the causal model
+  -  Income and Vaccination.
